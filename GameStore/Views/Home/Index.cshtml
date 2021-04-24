@@ -1,0 +1,28 @@
+﻿@using GameStore.ViewModels
+@using System.Globalization
+@model GamesListViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body>
+    <h1>All games</h1>
+    <h3>@Model.gameCategory</h3>
+    <div class="container mb-4 mt-3">
+        <div class="row">
+            @{
+                foreach (var game in Model.allGames)
+                {
+                    <div class="col-sm-4">
+                        <img class="img-thumbnail" src="@game.Image" alt="@game.Name" width="240" height="320" />
+                        <h2>@game.Name</h2>
+                        <p>@game.ShortDescription</p>
+                        <p>Price: @game.Price.ToString("c", CultureInfo.CreateSpecificCulture("en-US"))</p>
+                        <p><a class="btn btn-warning" asp-controller="ShopCart" asp-action="addToCart" asp-route-id="@game.Id">Buy</a></p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</body>

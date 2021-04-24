@@ -1,0 +1,15 @@
+﻿@using System.Globalization
+@using GameStore.ViewModels
+@model ShopCartViewModel
+
+<div class="container">
+    @foreach (var element in Model.shopCart.listShopItems)
+    {
+        <div class="alert alert-warning mt-3">
+            <b>Game:</b> @element.game.Name<br />
+            <b>Price:</b> @element.game.Price.ToString("c", CultureInfo.CreateSpecificCulture("en-US"))
+        </div>
+    }
+    <hr />
+    <a class="btn btn-danger" asp-controller="Orders" asp-action="Checkout">Pay</a>
+</div>
